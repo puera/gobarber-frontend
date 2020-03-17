@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import pt from 'date-fns/locale/pt';
 
 import api from '~/services/api';
 
@@ -23,7 +23,7 @@ export default function Notifications() {
   );
 
   useEffect(() => {
-    async function loadNotification() {
+    async function loadNotifications() {
       const response = await api.get('notifications');
 
       const data = response.data.map(notification => ({
@@ -31,14 +31,14 @@ export default function Notifications() {
         timeDistance: formatDistance(
           parseISO(notification.createdAt),
           new Date(),
-          { addSuffix: true, locale: ptBR }
+          { addSuffix: true, locale: pt }
         ),
       }));
 
       setNotifications(data);
     }
 
-    loadNotification();
+    loadNotifications();
   }, []);
 
   function handleToggleVisible() {

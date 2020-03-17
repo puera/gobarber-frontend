@@ -4,7 +4,7 @@ import api from '~/services/api';
 
 import { Container } from './styles';
 
-export default function Avatarinput() {
+export default function AvatarInput() {
   const { defaultValue, registerField } = useField('avatar');
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
@@ -34,6 +34,7 @@ export default function Avatarinput() {
     setFile(id);
     setPreview(url);
   }
+
   return (
     <Container>
       <label htmlFor="avatar">

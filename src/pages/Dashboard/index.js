@@ -1,17 +1,17 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   format,
-  isBefore,
-  isEqual,
-  parseISO,
   subDays,
   addDays,
   setHours,
   setMinutes,
   setSeconds,
+  isBefore,
+  isEqual,
+  parseISO,
 } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
-import ptBR from 'date-fns/locale/pt-BR';
+import pt from 'date-fns/locale/pt';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import api from '~/services/api';
 
@@ -24,7 +24,7 @@ export default function Dashboard() {
   const [date, setDate] = useState(new Date());
 
   const dateFormatted = useMemo(
-    () => format(date, "d 'de' MMMM", { locale: ptBR }),
+    () => format(date, "d 'de' MMMM", { locale: pt }),
     [date]
   );
 
@@ -51,6 +51,7 @@ export default function Dashboard() {
 
       setSchedule(data);
     }
+
     loadSchedule();
   }, [date]);
 
@@ -61,15 +62,16 @@ export default function Dashboard() {
   function handleNextDay() {
     setDate(addDays(date, 1));
   }
+
   return (
     <Container>
       <header>
         <button type="button" onClick={handlePrevDay}>
-          <MdChevronLeft size={36} color="#fff" />
+          <MdChevronLeft size={36} color="#FFF" />
         </button>
         <strong>{dateFormatted}</strong>
         <button type="button" onClick={handleNextDay}>
-          <MdChevronRight size={36} color="#fff" />
+          <MdChevronRight size={36} color="#FFF" />
         </button>
       </header>
 

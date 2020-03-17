@@ -27,7 +27,7 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
 
     history.push('/dashboard');
-  } catch (error) {
+  } catch (err) {
     toast.error('Falha na autenticação, verifique seus dados');
     yield put(signFailure());
   }
@@ -45,10 +45,8 @@ export function* signUp({ payload }) {
     });
 
     history.push('/');
-    toast.success('Cadastro feito com sucesso!');
-    yield put(signFailure());
-  } catch (error) {
-    toast.error('Falha no cadastro, verifique seus dados');
+  } catch (err) {
+    toast.error('Falha no cadastro, verifique seus dados!');
 
     yield put(signFailure());
   }
